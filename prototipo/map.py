@@ -27,7 +27,3 @@ class Map:
     @property
     def gravity(self):
         return self.__gravity
-
-    def gravity_effect(self, obj):
-        obj.direction.y += Map().gravity
-        obj.rect.y += obj.direction.y

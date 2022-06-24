@@ -1,5 +1,3 @@
-import pygame
-
 class Colision:
     def __init__(self):
         pass
@@ -20,6 +18,7 @@ class Colision:
                     object_two.rect.top = sprite.rect.bottom
                     object_two.direction.y = 0
                 elif object_two.direction.y > 0:
+                    object_two.on_ground = True
                     object_two.rect.bottom = sprite.rect.top
                     object_two.direction.y = 0
 

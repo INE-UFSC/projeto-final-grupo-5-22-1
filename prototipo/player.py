@@ -1,8 +1,7 @@
 import pygame
-from map import Map
 from character import Character
 
-class Player(pygame.sprite.Sprite, Character):
+class Player(Character):
     def __init__(self, pos):
         super().__init__()
         self.__image = pygame.Surface((32,64))
@@ -10,9 +9,8 @@ class Player(pygame.sprite.Sprite, Character):
         self.__rect = self.__image.get_rect(topleft = pos)
         self.__direction = pygame.math.Vector2(0,0)
         self.__speed = 4
-        self.__jump_height = 12
+        self.__jump_height = 13
         self.__jumpping = False
-        self.__on_ground = True
 
     @property
     def image(self):
@@ -34,14 +32,6 @@ class Player(pygame.sprite.Sprite, Character):
     def direction(self):
         return self.__direction
     
-    @property
-    def on_ground(self):
-        return self.__on_ground
-
-    @on_ground.setter
-    def on_ground(self, value):
-        self.__on_ground = value
-
 
     def move(self):
         keys = pygame.key.get_pressed()
@@ -62,17 +52,12 @@ class Player(pygame.sprite.Sprite, Character):
             if self.__jumpping == False:
                 self.direction.y =  -(self.__jump_height)  
                 self.__jumpping = True 
-                self.__on_ground = False
-  
-    def gravity_effect(self):
-        self.direction.y += Map().gravity
-        self.rect.y += self.direction.y
+                self.on_ground = False
 
     def status_update(self):
-        if self.__direction.y >= 0:
+        if self.on_ground == True:
             self.__jumpping = False
-            
-
+        
     def update(self):
         self.move()
         self.jump()

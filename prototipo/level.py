@@ -1,4 +1,3 @@
-import pygame
 from level_controller import LevelController
 from map import Map
 from screen import Screen

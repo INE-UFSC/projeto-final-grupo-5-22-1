@@ -7,10 +7,10 @@ class Map:
         ' XX    XXX           XX     ',    
         ' XX                         ',    
         ' XXXX         XX         XX ',                    
-        ' XXXX  P     XX             ',
+        ' XXXX       XX              ',
         ' XX    X  XXXX    XX  XX    ',
         '       X  XXXX    XX  XXX   ',
-        '    XXXX  XXXXXX  XX  XXXX  ',
+        'P    XXXX  XXXXXX  XX  XXXX ',
         'XXXXXXXX  XXXXXX  XX  XXXX  ',                                      
                                         ]
         self.__ground_size = 64
@@ -28,4 +28,6 @@ class Map:
     def gravity(self):
         return self.__gravity
 
-    
+    def gravity_effect(self, obj):
+        obj.direction.y += Map().gravity
+        obj.rect.y += obj.direction.y

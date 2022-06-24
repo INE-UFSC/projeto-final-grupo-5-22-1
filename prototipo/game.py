@@ -3,8 +3,6 @@ from pygame.locals import *
 from screen import Screen
 from level import Level
 
-
-
 class Game:
     def __init__(self):
         self.__clock = pygame.time.Clock()

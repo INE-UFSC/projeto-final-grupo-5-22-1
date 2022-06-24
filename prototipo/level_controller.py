@@ -1,4 +1,3 @@
-import pygame
 from ground import Ground
 from player import Player
 from sprites import Sprites
@@ -17,11 +16,12 @@ class LevelController:
     def setup_leve(self):
         for line_index, line in enumerate (self.__level):
             for colum_index, colum in enumerate(line):
-                x = colum_index * Map().ground_size
-                y = line_index * Map().ground_size
+                ground_size = Map().ground_size
+                x = colum_index * ground_size
+                y = line_index * ground_size
 
                 if colum == "X":
-                    ground = Ground((x,y), Map().ground_size)
+                    ground = Ground((x,y), ground_size)
                     self.__ground.add(ground)
                 if colum == "P":
                     player = Player((x,y))

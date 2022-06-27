@@ -4,7 +4,9 @@ from screen import Screen
 
 class Level:
     def __init__(self):
-        self.__level1 = LevelController(Map().map1, Screen().screen)
+        self.__map = Map()
+        self.__surface = Screen()
+        self.__level1 = LevelController(self.__map.map1, self.__surface.screen)
 
     @property
     def level1(self):

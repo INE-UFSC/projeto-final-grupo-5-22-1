@@ -3,14 +3,14 @@ class Map:
         self.__map1 = [
         '                            ',
         '                            ',   
-        '                            ',    
+        'L  L  L   L         L  L    ',    
         ' XX    XXX           XX     ',    
-        ' XX                         ',    
-        ' XXXX         XX         XX ',                    
-        ' XXXX       XX              ',
-        ' XX    X  XXXX    XX  XX    ',
-        '       X  XXXX    XX  XXX   ',
-        'P    XXXX  XXXXXX  XX  XXXX ',
+        ' XXCC        L EL       L  L',    
+        ' XXXX       C XX    C    XX ',                    
+        ' XXXXL  LL  XX   L  LL EL   ',
+        '      XX  XXXX    XX  XX    ',
+        '      XX  XXXXCC  XX  XXX   ',
+        'P   EXXXX  XXXXXX  XX  XXXX ',
         'XXXXXXXX  XXXXXX  XX  XXXX  ',                                      
                                         ]
         self.__ground_size = 64
@@ -27,3 +27,4 @@ class Map:
     @property
     def gravity(self):
         return self.__gravity
+

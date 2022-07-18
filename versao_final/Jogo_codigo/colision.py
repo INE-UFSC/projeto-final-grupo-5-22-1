@@ -43,7 +43,7 @@ class Colision:
                                 player.direction.y = 0
                                 player.on_ground = True
                             if isinstance(sprite, Enemy):
-                                if player.on_ground == False:
+                                if player.jumping == True:
                                     sprite.dead = True
                                     collidable_obj.remove(sprite)
 

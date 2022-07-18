@@ -6,7 +6,7 @@ class AnimatedObject(pygame.sprite.Sprite, ABC):
     @abstractmethod
     def __init__(self, size, position, path):
         super().__init__()
-        self.__frames = self.list_images(path)
+        self.__frames = self.import_folder(path)
         self.__frame_index = 0
         self.__image = self.__frames[self.__frame_index]
         self.__rect = self.__image.get_rect(topleft = position)
@@ -31,6 +31,10 @@ class AnimatedObject(pygame.sprite.Sprite, ABC):
     def frame_index(self, frame_index):
         self.__frame_index = frame_index
 
+    @frames.setter
+    def frames(self, frames):
+        self.__frames = frames
+
     @rect.setter
     def rect(self, rect):
         self.__rect = rect
@@ -39,7 +43,7 @@ class AnimatedObject(pygame.sprite.Sprite, ABC):
     def image(self, image):
         self.__image = image
 
-    def list_images(self, path):
+    def import_folder(self, path):
         image_list = []
         for _,_,image_files in walk(path):
             for image in image_files:
@@ -48,7 +52,7 @@ class AnimatedObject(pygame.sprite.Sprite, ABC):
                 image_list.append(image_surf)
 
         return image_list
-
+        
     def animate(self):
         self.__frame_index += 0.15
         if self.__frame_index >= len(self.__frames):

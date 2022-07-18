@@ -2,7 +2,7 @@ from enemy import Enemy
 from ground import Ground
 from limiter import Limiter
 from coin import Coin
-import pygame
+
 class Colision:
     def __init__(self):
         pass

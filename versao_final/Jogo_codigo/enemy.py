@@ -23,12 +23,6 @@ class Enemy(AnimatedObject):
         if self.__speed < 0:
             self.image = pygame.transform.flip(self.image, True, False)
 
-    def animate(self):
-        self.frame_index += 0.25
-        if self.frame_index >= len(self.frames):
-            self.frame_index = 0
-        self.image = self.frames[int(self.frame_index)]
-
     def move(self):
         self.rect.x -= self.__speed
 

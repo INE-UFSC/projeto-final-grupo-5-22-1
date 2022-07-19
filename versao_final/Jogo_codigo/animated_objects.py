@@ -54,7 +54,7 @@ class AnimatedObject(pygame.sprite.Sprite, ABC):
         return image_list
         
     def animate(self):
-        self.__frame_index += 0.15
+        self.__frame_index += 0.20
         if self.__frame_index >= len(self.__frames):
             self.__frame_index = 0
         self.__image = self.__frames[int(self.__frame_index)]

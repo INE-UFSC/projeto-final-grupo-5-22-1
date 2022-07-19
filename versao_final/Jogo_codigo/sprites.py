@@ -11,7 +11,7 @@ class Sprites:
         self.__files = ImportFile()
         self.__import_sprite = self.__files.import_graphics
         self.__sprites = {'ground' : ('../Jogo_sprites/Ground/ground_sprite.png', Ground),
-                          'coins' : ('../Jogo_sprites/Coins', Coin),
+                          'coins' : ('../Jogo_sprites/Coins/animation', Coin),
                           'enemys' : ('../Jogo_sprites/Enemy/Run', Enemy),
                           'limiter' : ('../Jogo_sprites/Limiter/limiter_sprite.png', Limiter),
                           'player' : ('../Jogo_sprites/Player/idle', Player)

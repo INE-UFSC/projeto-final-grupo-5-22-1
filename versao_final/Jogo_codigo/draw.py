@@ -8,8 +8,9 @@ class Draw:
     def draw(self, object, surface):
         object.draw(surface)
 
-    def write_screen(self, frase, surface, position):
-        text = self.__text_font.render(f"{frase}", True, (255,255,255))
-        text_rect = text.get_rect(topleft = position)
-        surface.blit(text, text_rect)
+    def score_ui(self, image, amount, surface, position):
+        surface.blit(image, position)
+        coin_amount = self.__text_font.render('x' + str(amount), False, 'black')
+        coin_amount_rect = coin_amount.get_rect(midleft = (position[0] + 40,position[1] + 18 ))
+        surface.blit(coin_amount, coin_amount_rect)
         

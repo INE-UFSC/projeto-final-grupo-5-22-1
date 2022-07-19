@@ -54,7 +54,7 @@ class LevelController:
         self.__draw.draw(self.__player, self.__display_surface)
         self.__draw.draw(self.__enemys, self.__display_surface)
         self.__draw.draw(self.__coins, self.__display_surface)
-        self.__draw.write_screen(f"Score: {self.__score.score}", self.__display_surface, (30, 30))
+        self.__draw.score_ui(self.__score.image, self.__score.score, self.__display_surface, (50, 60))
 
         #self.__draw.draw(self.__health, self.__display_surface)
         self.__health.show_health(self.__player.sprite.cur_health, self.__player.sprite.max_health)

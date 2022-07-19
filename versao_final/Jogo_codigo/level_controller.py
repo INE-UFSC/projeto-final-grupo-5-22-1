@@ -2,6 +2,7 @@ from score import Score
 from sprites import Sprites
 from draw import Draw
 from colision import Colision
+from health import Health
 
 
 class LevelController:
@@ -10,6 +11,7 @@ class LevelController:
         self.__sprite = Sprites()
         self.__score = Score()
         self.__colision = Colision()
+        self.__health = Health(surface)
         self.__display_surface = surface
         self.__level_shift = 0
         self.__level = current_level
@@ -53,6 +55,9 @@ class LevelController:
         self.__draw.draw(self.__enemys, self.__display_surface)
         self.__draw.draw(self.__coins, self.__display_surface)
         self.__draw.write_screen(f"Score: {self.__score.score}", self.__display_surface, (30, 30))
+
+        #self.__draw.draw(self.__health, self.__display_surface)
+        self.__health.show_health(self.__player.sprite.cur_health, self.__player.sprite.max_health)
 
     def update(self):
         self.__ground.update(self.__level_shift)

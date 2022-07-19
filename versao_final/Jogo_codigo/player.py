@@ -13,13 +13,45 @@ class Player(AnimatedObject):
         self.__on_right = True
         self.__status = 'idle'
 
+         # vida
+        self.__max_health = 100
+        self.__cur_health = 100
+
+        # resetar pra True quando passar de nível
+        self.__alive = True
+
+        # timer para diminuir vida
+        self.__invincible = False
+        self.__invincible_duration = 600
+        self.__hurt_time = 0
+
+    @property
+    def alive(self):
+        return self.__alive
+
+    @property
+    def max_health(self):
+        return self.__max_health
+    
+    @property
+    def cur_health(self):
+        return self.__cur_health
+
+    @property
+    def invincible(self):
+        return self.__invincible
+    
+    @property
+    def invincible_duration(self):
+        return self.__invincible_duration
+    
+    @property
+    def hurt_time(self):
+        return self.__hurt_time
+
     @property
     def speed(self):
         return self.__speed
-    
-    @speed.setter
-    def speed(self, speed):
-        self.__speed = speed
 
     @property
     def jumping(self):
@@ -32,6 +64,22 @@ class Player(AnimatedObject):
     @property
     def on_ground(self):
         return self.__on_ground
+    
+    @alive.setter
+    def alive(self, alive):
+        self.__alive = alive
+
+    @invincible.setter
+    def invincible(self, invincible):
+        self.__invincible = invincible
+
+    @hurt_time.setter
+    def hurt_time(self, hurt_time):
+        self.__hurt_time = hurt_time
+
+    @speed.setter
+    def speed(self, speed):
+        self.__speed = speed
 
     @on_ground.setter
     def on_ground(self, on_ground):
@@ -44,6 +92,27 @@ class Player(AnimatedObject):
     @jumping.setter
     def jumping(self, jumping):
         self.__jumping = jumping
+    
+    @cur_health.setter
+    def cur_health(self, cur_health):
+        self.__cur_health = cur_health
+
+    def change_health(self, amount):
+        if not self.invincible:
+            self.cur_health += amount
+            self.invincible = True
+            self.hurt_time = pygame.time.get_ticks()
+    
+    def invincibility_timer(self):
+        if self.invincible:
+            current_time = pygame.time.get_ticks()
+            if current_time - self.hurt_time >= self.invincible_duration:
+                self.invincible = False
+
+    def died(self):
+        if self.cur_health <= 0:
+            self.cur_health = 100
+            self.alive = False
 
     def move(self):
         keys = pygame.key.get_pressed()
@@ -112,7 +181,7 @@ class Player(AnimatedObject):
         self.move()
         self.jump()
         self.status_update()
-
+        self.invincibility_timer()
     
 
         

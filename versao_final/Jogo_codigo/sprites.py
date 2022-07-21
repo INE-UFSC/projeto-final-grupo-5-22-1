@@ -35,19 +35,17 @@ class Sprites:
                         
                         elif type == 'player':
                             sprite_group = pygame.sprite.GroupSingle()
-                            sprite = self.__sprites[type][1](size, (x,y), self.__sprites[type][0])
+                            sprite = self.__sprites[type][1]((x,y), self.__sprites[type][0])
                             sprite.character_assets()
 
                         else: 
-                            sprite = self.__sprites[type][1](size, (x,y), self.__sprites[type][0])
+                            sprite = self.__sprites[type][1]((x,y), self.__sprites[type][0])
 
                         sprite_group.add(sprite)
 
         return sprite_group
 
-
     def setup_sprite(self, level, group):
         setup = self.__layout(level[group])
         sprites = self.create_sprite_group(setup, group)
         return sprites
-

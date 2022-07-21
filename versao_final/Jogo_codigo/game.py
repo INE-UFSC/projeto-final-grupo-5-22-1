@@ -16,12 +16,12 @@ class Game:
         pygame.init()
   
         while self.__running:
-            for event in pygame.event.get():
+            for event in pygame.event.get(): 
                 if event.type == pygame.QUIT:
                     self.running = False
                     pygame.quit() 
                     sys.exit()
-
+       
             self.__screen.fill("grey")
             self.__level.run()
 

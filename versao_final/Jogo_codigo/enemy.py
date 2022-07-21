@@ -3,10 +3,11 @@ from animated_objects import AnimatedObject
 from random import randint
 
 class Enemy(AnimatedObject):
-    def __init__(self, size, position, path):
-        super().__init__(size, position, path)
+    def __init__(self,position, path):
+        super().__init__(position, path)
         self.__speed = randint(2, 4)
         self.__dead = False
+        self.__power = 10
 
     @property
     def dead(self):
@@ -15,6 +16,10 @@ class Enemy(AnimatedObject):
     @dead.setter
     def dead(self, dead):
         self.__dead = dead
+
+    @property
+    def power(self):
+        return self.__power
 
     def reverse_side(self):
         self.__speed *= -1

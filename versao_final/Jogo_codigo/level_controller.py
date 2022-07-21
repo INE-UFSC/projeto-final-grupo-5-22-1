@@ -4,7 +4,6 @@ from draw import Draw
 from colision import Colision
 from health import Health
 
-
 class LevelController:
     def __init__(self, current_level, surface):
         self.__draw = Draw()
@@ -20,7 +19,6 @@ class LevelController:
         self.__enemys = self.__sprite.setup_sprite(self.__level, 'enemys')
         self.__limiter = self.__sprite.setup_sprite(self.__level, 'limiter')
         self.__player = self.__sprite.setup_sprite(self.__level, 'player')
-        
 
     def mapa_limiter(self):
         player = self.__player.sprite
@@ -44,10 +42,11 @@ class LevelController:
                     sprite.reverse_side()
 
     def colision_control(self):
-        collidable_sprites = self.__enemys.sprites() + self.__coins.sprites() + self.__ground.sprites() \
-        + self.__limiter.sprites()
-        self.__colision.apply_colission(collidable_sprites, self.__player.sprite)
-        self.__colision.apply_enemy_colision(collidable_sprites, self.__enemys.sprites())
+        self.__colision.player_ground_horizontal_colison(self.__ground.sprites(), self.__player.sprite)
+        self.__colision.player_ground_vertical_colison(self.__ground.sprites(), self.__player.sprite)
+        self.__colision.player_enemy_colision(self.__enemys.sprites(), self.__player.sprite)
+        self.__colision.player_coin_colision(self.__coins.sprites(), self.__player.sprite)
+        self.__colision.enemy_limiter_colision(self.__limiter.sprites(), self.__enemys.sprites())
                     
     def draw_control(self):
         self.__draw.draw(self.__ground, self.__display_surface)
@@ -55,8 +54,6 @@ class LevelController:
         self.__draw.draw(self.__enemys, self.__display_surface)
         self.__draw.draw(self.__coins, self.__display_surface)
         self.__draw.score_ui(self.__score.image, self.__score.score, self.__display_surface, (50, 60))
-
-        #self.__draw.draw(self.__health, self.__display_surface)
         self.__health.show_health(self.__player.sprite.cur_health, self.__player.sprite.max_health)
 
     def update(self):
@@ -66,14 +63,14 @@ class LevelController:
         self.__limiter.update(self.__level_shift)
         self.__player.update()
 
-    def check_alive(self):
+    def check_state(self):
         for sprite in self.__enemys.sprites():
             if sprite.dead == True:
-                self.__enemys.remove(sprite)
+                sprite.kill()
 
         for sprite in self.__coins.sprites():
             if sprite.collected == True:
-                self.__coins.remove(sprite)
+                sprite.kill()
 
     def score(self):
         for sprite in self.__coins.sprites():
@@ -86,4 +83,4 @@ class LevelController:
         self.mapa_limiter() 
         self.colision_control()
         self.score()
-        self.check_alive()
+        self.check_state()

@@ -2,28 +2,26 @@ import pygame
 from animated_objects import AnimatedObject
 
 class Player(AnimatedObject):
-    def __init__(self, size, position, path):
-        super().__init__(size, position, path)
+    def __init__(self, position, path):
+        super().__init__(position, path)
         self.__animations = {'idle' : [], 'run' : [], 'jump' : [], 'fall' : []}
         self.__direction = pygame.math.Vector2(0,1)
-        self.__speed = 4
-        self.__jump_height = 13
+        self.__speed = 5
+        self.__jump_height = 16
         self.__jumping = False
         self.__on_ground = True
         self.__on_right = True
         self.__status = 'idle'
-
-         # vida
         self.__max_health = 100
         self.__cur_health = 100
-
-        # resetar pra True quando passar de nível
         self.__alive = True
-
-        # timer para diminuir vida
         self.__invincible = False
         self.__invincible_duration = 600
         self.__hurt_time = 0
+
+    @property
+    def status(self):
+        return self.__status
 
     @property
     def alive(self):
@@ -52,6 +50,10 @@ class Player(AnimatedObject):
     @property
     def speed(self):
         return self.__speed
+
+    @property
+    def jump_height(self):
+        return self.__jump_height
 
     @property
     def jumping(self):
@@ -99,7 +101,7 @@ class Player(AnimatedObject):
 
     def change_health(self, amount):
         if not self.invincible:
-            self.cur_health += amount
+            self.cur_health -= amount
             self.invincible = True
             self.hurt_time = pygame.time.get_ticks()
     
@@ -132,20 +134,18 @@ class Player(AnimatedObject):
         keys = pygame.key.get_pressed()
         
         if keys[pygame.K_SPACE]:
-            if self.__jumping == False:
+            if self.__on_ground == True:
                 self.direction.y =  -(self.__jump_height)  
                 self.__jumping = True 
                 self.on_ground = False
    
     def status_update(self):
-        if self.__on_ground == True:
-            self.__jumping = False
-        elif self.__jumping == True:
-            self.__on_ground = False
         if self.__direction.y < 0 :
             self.__status = 'jump'
+            self.__jumping = True
         elif self.__direction.y > 1 :
             self.__status = 'fall'
+            self.__on_ground = False
         else:
             if self.__direction.x != 0:
                 self.__status = 'run'
@@ -160,7 +160,7 @@ class Player(AnimatedObject):
             self.__animations[animation] = self.frames = self.import_folder(animation_path)
 
     def gravity_effect(self):
-        self.direction.y += 0.5
+        self.direction.y += 0.75
         self.rect.y += self.direction.y
 
     def animate(self):
@@ -182,9 +182,4 @@ class Player(AnimatedObject):
         self.jump()
         self.status_update()
         self.invincibility_timer()
-    
-
-        
-
-        
     

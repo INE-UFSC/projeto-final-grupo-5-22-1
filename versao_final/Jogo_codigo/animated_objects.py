@@ -4,7 +4,7 @@ from os import walk
 
 class AnimatedObject(pygame.sprite.Sprite, ABC):
     @abstractmethod
-    def __init__(self, size, position, path):
+    def __init__(self, position, path):
         super().__init__()
         self.__frames = self.import_folder(path)
         self.__frame_index = 0

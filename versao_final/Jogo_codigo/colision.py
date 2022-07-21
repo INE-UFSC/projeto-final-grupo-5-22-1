@@ -1,66 +1,47 @@
-from enemy import Enemy
-from ground import Ground
-from limiter import Limiter
-from coin import Coin
-
 class Colision:
     def __init__(self):
         pass
 
-    def player_horizontal_colison(self, collidable_obj, player):
-        for sprite in collidable_obj:
-            if not isinstance(sprite, Limiter):
-                if sprite.rect.colliderect(player.rect):
-                    if isinstance(sprite, Coin):
-                        sprite.collected = True
-                        collidable_obj.remove(sprite)
-                    else:
-                        if not isinstance(sprite, Enemy):
-                            if player.direction.x < 0:
-                                player.rect.left = sprite.rect.right
-                            elif player.direction.x > 0:
-                                player.rect.right = sprite.rect.left
-                        else:
-                            print("Player tomou dano")
-                            player.change_health(-10)
-                            
-    def player_vertical_colison(self, collidable_obj, player):
+    def player_ground_horizontal_colison(self, ground, player):
+        for ground_sprite in ground:
+            if player.rect.colliderect(ground_sprite.rect):
+                if player.direction.x < 0:
+                    player.rect.left = ground_sprite.rect.right
+                elif player.direction.x > 0:
+                    player.rect.right = ground_sprite.rect.left
+                else:
+                    player.change_health(-10)
+                        
+    def player_ground_vertical_colison(self, ground, player):
         player.gravity_effect()
-        for sprite in collidable_obj:
-            if not isinstance (sprite, Limiter):
-                if sprite.rect.colliderect(player.rect):
-                    if isinstance(sprite, Coin):
-                        sprite.collected = True
-                        collidable_obj.remove(sprite)
-                    else:
-                        if player.direction.y < 0:
-                            if not isinstance(sprite, Enemy):
-                                player.rect.top = sprite.rect.bottom
-                                player.direction.y = 0
-                                
-                        elif player.direction.y > 0.5:
-                            if not isinstance(sprite, Enemy):
-                                player.rect.bottom = sprite.rect.top
-                                player.direction.y = 0
-                                player.on_ground = True
-                            if isinstance(sprite, Enemy):
-                                if player.jumping == True:
-                                    sprite.dead = True
-                                    collidable_obj.remove(sprite)
+        for ground_sprite in ground:
+                if player.rect.colliderect(ground_sprite.rect):
+                    if player.direction.y < 0:
+                        player.rect.top = ground_sprite.rect.bottom
+                        player.direction.y = 0
+                    elif player.direction.y > 0.5:
+                            player.rect.bottom = ground_sprite.rect.top
+                            player.direction.y = 0
+                            player.on_ground = True
+                            player.jumping = False
 
+    def player_enemy_colision(self, enemy, player):
+        for enemy_sprite in enemy:
+            if player.rect.colliderect(enemy_sprite.rect):
+                if enemy_sprite.rect.top < player.rect.bottom < enemy_sprite.rect.centery and player.status == "fall":
+                    player.direction.y = -player.jump_height
+                    enemy_sprite.dead = True
+                else:
+                    player.change_health(enemy_sprite.power)
 
-    def enemy_colision(self, collidable_obj, enemy):
-        for spriteG in collidable_obj:
-            for spriteE in enemy:
-                if (isinstance(spriteG, Limiter)):
-                    if spriteE.rect.colliderect(spriteG.rect):
-                        spriteE.reverse_side()
+    def enemy_limiter_colision(self, limiter, enemy):
+        for limiter_sprite in limiter:
+            for enemy_sprite in enemy:
+                if enemy_sprite.rect.colliderect(limiter_sprite.rect):
+                    enemy_sprite.reverse_side()
+
+    def player_coin_colision(self, coin, player):
+        for coin_sprite in coin:
+            if player.rect.colliderect(coin_sprite.rect):
+                coin_sprite.collected = True
                 
-
-    def apply_colission(self,collidable_obj, player):
-        self.player_horizontal_colison(collidable_obj, player)
-        self.player_vertical_colison(collidable_obj, player)
-    
-    def apply_enemy_colision(self, collidable_obj, enemy):
-        self.enemy_colision(collidable_obj, enemy)
-

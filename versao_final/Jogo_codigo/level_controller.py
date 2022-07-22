@@ -3,9 +3,11 @@ from sprites import Sprites
 from draw import Draw
 from colision import Colision
 from health import Health
+#from scoreDAO import ScoreDAO
 
 class LevelController:
     def __init__(self, current_level, surface):
+        #self.__scoreDAO = ScoreDAO()
         self.__draw = Draw()
         self.__sprite = Sprites()
         self.__score = Score()

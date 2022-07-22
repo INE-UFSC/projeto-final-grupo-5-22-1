@@ -9,7 +9,6 @@ from map import Map
 from colision import Colision
 from coin import Coin
 
-
 class LevelController:
     def __init__(self, current_level, surface):
         self.__draw = Draw()

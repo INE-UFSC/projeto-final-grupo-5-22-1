@@ -28,5 +28,5 @@ class Game:
             pygame.display.update()
             self.__clock.tick(self.__FPS)
 
-game = Game()
-game.start_game()
+#game = Game()
+#game.start_game()

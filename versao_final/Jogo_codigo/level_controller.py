@@ -54,6 +54,7 @@ class LevelController:
         self.__colision.player_enemy_colision(self.__enemys.sprites(), self.__player.sprite)
         self.__colision.player_coin_colision(self.__coins.sprites(), self.__player.sprite)
         self.__colision.enemy_limiter_colision(self.__limiter.sprites(), self.__enemys.sprites())
+        self.__colision.player_powerup_colision(self.__powerup.sprites(), self.__player.sprite)
                     
     def draw_control(self):
         self.__draw.draw(self.__ground, self.__display_surface)
@@ -62,6 +63,7 @@ class LevelController:
         self.__draw.draw(self.__coins, self.__display_surface)
         self.__draw.score_ui(self.__score.image, self.__score.score, self.__display_surface, (50, 60))
         self.__health.show_health(self.__player.sprite.cur_health, self.__player.sprite.max_health)
+        self.__draw.draw(self.__powerup, self.__display_surface)
 
     def update(self):
         self.__ground.update(self.__level_shift)
@@ -69,14 +71,14 @@ class LevelController:
         self.__enemys.update(self.__level_shift)
         self.__limiter.update(self.__level_shift)
         self.__player.update()
+        self.__powerup.update(self.__level_shift)
 
     def check_state(self):
         for sprite in self.__enemys.sprites():
             if sprite.dead == True:
                 posicao = sprite.rect.center
-                if randint(0,3) == 1:
-                    self.__coins.add((Coin(posicao, "../Jogo_sprites/Coins/animation")))
-                #self.__draw.draw(self.__powerup, self.__display_surface)
+                if randint(0,1) == 0 or 1:
+                    self.__powerup.add((Powerup(posicao, "../Jogo_sprites/Coins/animation")))
                 sprite.kill()
 
         for sprite in self.__coins.sprites():

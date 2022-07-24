@@ -1,3 +1,7 @@
+from player import Player
+from powerup import Powerup
+
+
 class Colision:
     def __init__(self):
         pass
@@ -44,4 +48,11 @@ class Colision:
         for coin_sprite in coin:
             if player.rect.colliderect(coin_sprite.rect):
                 coin_sprite.collected = True
+    
+    def player_powerup_colision(self, powerup, player):
+        for powerup_sprite in powerup:
+            if player.rect.colliderect(powerup_sprite.rect):
+                powerup_sprite.effect(player)
+                print(player.speed, player.jump_height, player.cur_health)
+                powerup_sprite.kill()
                 

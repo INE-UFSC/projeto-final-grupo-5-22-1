@@ -94,6 +94,10 @@ class Player(AnimatedObject):
     @jumping.setter
     def jumping(self, jumping):
         self.__jumping = jumping
+
+    @jump_height.setter
+    def jump_height(self, jump_height):
+        self.__jump_height = jump_height
     
     @cur_health.setter
     def cur_health(self, cur_health):

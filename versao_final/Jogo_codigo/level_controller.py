@@ -3,6 +3,10 @@ from sprites import Sprites
 from draw import Draw
 from colision import Colision
 from health import Health
+from random import randint, random
+from powerup import Powerup
+from coin import Coin
+import pygame
 #from scoreDAO import ScoreDAO
 
 class LevelController:
@@ -21,6 +25,7 @@ class LevelController:
         self.__enemys = self.__sprite.setup_sprite(self.__level, 'enemys')
         self.__limiter = self.__sprite.setup_sprite(self.__level, 'limiter')
         self.__player = self.__sprite.setup_sprite(self.__level, 'player')
+        self.__powerup = pygame.sprite.Group()
 
     def mapa_limiter(self):
         player = self.__player.sprite
@@ -68,6 +73,10 @@ class LevelController:
     def check_state(self):
         for sprite in self.__enemys.sprites():
             if sprite.dead == True:
+                posicao = sprite.rect.center
+                if randint(0,3) == 1:
+                    self.__coins.add((Coin(posicao, "../Jogo_sprites/Coins/animation")))
+                #self.__draw.draw(self.__powerup, self.__display_surface)
                 sprite.kill()
 
         for sprite in self.__coins.sprites():

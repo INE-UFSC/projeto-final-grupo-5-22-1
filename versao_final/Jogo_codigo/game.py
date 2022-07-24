@@ -22,11 +22,11 @@ class Game:
                     pygame.quit() 
                     sys.exit()
        
-            self.__screen.fill("grey")
-            self.__level.run()
+            self.__screen.fill((200,200,200))
+            self.__level.run() 
 
             pygame.display.update()
             self.__clock.tick(self.__FPS)
 
-# game = Game()
-# game.start_game()
+game = Game()
+game.start_game()

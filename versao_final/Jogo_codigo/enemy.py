@@ -36,4 +36,7 @@ class Enemy(AnimatedObject):
         self.animate()
         self.move()
         self.reverse_image()
+      
+    def drop_powerup(self, powerup):
+            return powerup
         

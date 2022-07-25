@@ -16,7 +16,7 @@ class Player(AnimatedObject):
         self.__cur_health = 100
         self.__alive = True
         self.__invincible = False
-        self.__invincible_duration = 600
+        self.__invincible_duration = 500
         self.__hurt_time = 0
 
     @property

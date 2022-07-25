@@ -23,9 +23,8 @@ class DAO(ABC):
 
     def add(self, key, obj):
         self.__cache[key] = obj
-        print("adiconado score")
         self.dump()
-        
+
     def remove(self, key):
         try:
             self.__cache.pop(key)

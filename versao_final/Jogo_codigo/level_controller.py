@@ -7,11 +7,11 @@ from random import randint, random
 from powerup import Powerup
 from coin import Coin
 import pygame
-#from scoreDAO import ScoreDAO
+from scoreDAO import ScoreDAO
 
 class LevelController:
     def __init__(self, current_level, surface):
-        # self.__scoreDAO = ScoreDAO()
+        self.__scoreDAO = ScoreDAO()
         self.__draw = Draw()
         self.__sprite = Sprites()
         self.__score = Score()
@@ -90,10 +90,12 @@ class LevelController:
             if sprite.collected == True:
                 self.__score.update()
     
-    # def game_over(self):
-    #     self.__player.sprite.check_alive()
-    #     if not self.__player.sprite.alive:
-    #         self.__scoreDAO.add(self.__score)
+    def game_over(self):
+        self.__player.sprite.check_alive()
+        if not self.__player.sprite.alive:
+            self.__scoreDAO.add(self.__score)
+            
+            print(self.__scoreDAO.get('1'))
 
     def run(self):
         self.draw_control()
@@ -101,6 +103,6 @@ class LevelController:
         self.mapa_limiter() 
         self.colision_control()
         self.score()
-        # self.game_over()
+        self.game_over()
         self.check_state()
 

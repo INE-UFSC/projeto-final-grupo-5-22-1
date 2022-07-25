@@ -7,7 +7,7 @@ class ScoreDAO(DAO):
 
     def add(self, score: Score):
         if (score is not None) and (isinstance(score, Score)):
-            super().add(score.id, score)
+            super().add(score.id, score.score)
    
     def get(self, key: str):
         if isinstance(key, str):

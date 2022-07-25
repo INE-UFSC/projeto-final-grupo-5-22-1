@@ -3,7 +3,7 @@ import pygame
 from menuCredits import menuCredits
 from menuMain import menuMain
 from menuScore import menuScore
-
+from main import Main
 from game import Game
 
 
@@ -11,7 +11,7 @@ class Play():
     def __init__(self):
         pygame.init()
         
-        self.__game = Game()
+        self.__game = Main()
 
         self.running, self.playing = True, False
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False, False, False, False
@@ -43,7 +43,7 @@ class Play():
                 self.playing= False
 
             #JOGO AQUI
-            self.__game.start_game()
+            self.__game.start()
 
             # self.display.fill(self.BLACK)
             # self.draw_text('Thanks for Playing', 20, self.DISPLAY_W/2, self.DISPLAY_H/2)

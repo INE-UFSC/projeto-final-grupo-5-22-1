@@ -11,7 +11,7 @@ import pygame
 
 class LevelController:
     def __init__(self, current_level, surface):
-        #self.__scoreDAO = ScoreDAO()
+        # self.__scoreDAO = ScoreDAO()
         self.__draw = Draw()
         self.__sprite = Sprites()
         self.__score = Score()
@@ -89,6 +89,11 @@ class LevelController:
         for sprite in self.__coins.sprites():
             if sprite.collected == True:
                 self.__score.update()
+    
+    # def game_over(self):
+    #     self.__player.sprite.check_alive()
+    #     if not self.__player.sprite.alive:
+    #         self.__scoreDAO.add(self.__score)
 
     def run(self):
         self.draw_control()
@@ -96,4 +101,6 @@ class LevelController:
         self.mapa_limiter() 
         self.colision_control()
         self.score()
+        # self.game_over()
         self.check_state()
+

@@ -4,12 +4,11 @@ class Score:
     def __init__(self):
         self.__score = 0
         self.__image = pygame.image.load("../Jogo_sprites/Score_UI/coin_ui.png")
-
-         #self.__id = input("Digite seu nome: ")
+        # self.__id = 1
 
     # @property 
     # def id(self):
-    #     return self.id
+    #     return self.__id
 
     # @id.setter
     # def id(self, id):

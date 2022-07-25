@@ -115,7 +115,7 @@ class Player(AnimatedObject):
             if current_time - self.hurt_time >= self.invincible_duration:
                 self.invincible = False
 
-    def died(self):
+    def check_alive(self):
         if self.cur_health <= 0:
             self.cur_health = 100
             self.alive = False

@@ -1,33 +1,38 @@
 from player import Player
-from powerup import Powerup
+from enemy import Enemy
 
 
 class Colision:
     def __init__(self):
         pass
 
-    def player_ground_horizontal_colison(self, ground, player):
+    def ground_horizontal_colison(self, ground, sprite):
         for ground_sprite in ground:
-            if player.rect.colliderect(ground_sprite.rect):
-                if player.direction.x < 0:
-                    player.rect.left = ground_sprite.rect.right
-                elif player.direction.x > 0:
-                    player.rect.right = ground_sprite.rect.left
-                else:
-                    player.change_health(-10)
+                if sprite.rect.colliderect(ground_sprite.rect):
+                    if sprite.direction.x < 0:
+                        sprite.rect.left = ground_sprite.rect.right
+                    elif sprite.direction.x > 0:
+                        sprite.rect.right = ground_sprite.rect.left
                         
-    def player_ground_vertical_colison(self, ground, player):
-        player.gravity_effect()
-        for ground_sprite in ground:
-                if player.rect.colliderect(ground_sprite.rect):
-                    if player.direction.y < 0:
-                        player.rect.top = ground_sprite.rect.bottom
-                        player.direction.y = 0
-                    elif player.direction.y > 0.5:
-                            player.rect.bottom = ground_sprite.rect.top
-                            player.direction.y = 0
-                            player.on_ground = True
-                            player.jumping = False
+    def ground_vertical_colison(self, ground, sprite):
+        if isinstance(sprite, Player):
+            sprite.gravity_effect()
+            for ground_sprite in ground:
+                    if sprite.rect.colliderect(ground_sprite.rect):
+                        if sprite.direction.y < 0:
+                            sprite.rect.top = ground_sprite.rect.bottom
+                            sprite.direction.y = 0
+                        elif sprite.direction.y > 0.5:
+                                sprite.rect.bottom = ground_sprite.rect.top
+                                sprite.direction.y = 0
+                                sprite.on_ground = True
+                                sprite.jumping = False
+        elif isinstance (sprite, Enemy):
+            for enemy in sprite:
+                enemy.gravity_effect()
+                for ground_sprite in ground:
+                    if sprite.rect.colliderect(ground_sprite.rect):
+                        sprite.rect.bottom = ground_sprite.rect.top
 
     def player_enemy_colision(self, enemy, player):
         for enemy_sprite in enemy:

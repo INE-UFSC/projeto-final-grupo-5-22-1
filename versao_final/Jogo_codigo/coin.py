@@ -3,8 +3,8 @@ from animated_objects import AnimatedObject
 class Coin(AnimatedObject):
     def __init__(self, position, path):
         super().__init__(position, path)
-        self.__size = 64
-        self.__rect = self.image.get_rect(center = ((position[0] + int(self.__size/2)), (position[1] + int(self.__size/2))))
+        self.frames = self.import_folder(path, (32,32))
+        self.__rect = self.image.get_rect(center = ((position[0] + 45), (position[1]) + 45))
         self.__collected = False
         
     @property

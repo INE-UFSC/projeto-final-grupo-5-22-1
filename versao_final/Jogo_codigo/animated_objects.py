@@ -43,13 +43,14 @@ class AnimatedObject(pygame.sprite.Sprite, ABC):
     def image(self, image):
         self.__image = image
 
-    def import_folder(self, path):
+    def import_folder(self, path, size=(64,75)):
         image_list = []
         for _,_,image_files in walk(path):
             for image in image_files:
                 full_path = path + '/' + image
                 image_surf = pygame.image.load(full_path).convert_alpha()
-                image_list.append(image_surf)
+                final_image = pygame.transform.scale(image_surf, size)
+                image_list.append(final_image)
 
         return image_list
         

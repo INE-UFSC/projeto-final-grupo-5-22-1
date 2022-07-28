@@ -6,7 +6,7 @@ class Player(AnimatedObject):
         super().__init__(position, path)
         self.__animations = {'idle' : [], 'run' : [], 'jump' : [], 'fall' : []}
         self.__direction = pygame.math.Vector2(0,1)
-        self.__speed = 5
+        self.__speed = 300
         self.__jump_height = 16
         self.__jumping = False
         self.__on_ground = True

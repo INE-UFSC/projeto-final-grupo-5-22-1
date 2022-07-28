@@ -49,8 +49,9 @@ class LevelController:
                     sprite.reverse_side()
 
     def colision_control(self):
-        self.__colision.player_ground_horizontal_colison(self.__ground.sprites(), self.__player.sprite)
-        self.__colision.player_ground_vertical_colison(self.__ground.sprites(), self.__player.sprite)
+        self.__colision.ground_horizontal_colison(self.__ground.sprites(), self.__player.sprite)
+        self.__colision.ground_vertical_colison(self.__ground.sprites(), self.__player.sprite)
+        self.__colision.ground_vertical_colison(self.__ground.sprites(), self.__enemys.sprites())
         self.__colision.player_enemy_colision(self.__enemys.sprites(), self.__player.sprite)
         self.__colision.player_coin_colision(self.__coins.sprites(), self.__player.sprite)
         self.__colision.enemy_limiter_colision(self.__limiter.sprites(), self.__enemys.sprites())
@@ -76,9 +77,9 @@ class LevelController:
     def check_state(self):
         for sprite in self.__enemys.sprites():
             if sprite.dead == True:
-                posicao = sprite.rect.center
+                posicao = sprite.rect.topleft
                 if randint(0,1) == 0 or 1:
-                    self.__powerup.add((Powerup(posicao, "../Jogo_sprites/Coins/animation")))
+                    self.__powerup.add((Powerup(posicao, "../Jogo_sprites/Powerup")))
                 sprite.kill()
 
         for sprite in self.__coins.sprites():

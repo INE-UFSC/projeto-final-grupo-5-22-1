@@ -10,7 +10,7 @@ class Game:
         self.__running = True
         self.__screen = Screen().screen
         self.__name = pygame.display.set_caption('Not Mario')
-        self.__level = Level(self.__screen).levels[2]
+        self.__level = Level(self.__screen).levels[0]
 
     def start_game(self):
         pygame.init()

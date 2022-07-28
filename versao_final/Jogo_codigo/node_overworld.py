@@ -3,6 +3,20 @@ import pygame
 class Node(pygame.sprite.Sprite):
 	def __init__(self,pos,status,icon_speed):
 		super().__init__()
-		self.image = pygame.transform.scale(pygame.image.load('images_overworld/ilha2.png'),(400,300))
-		self.rect = self.image.get_rect(center = pos)
-		self.detection_zone = pygame.Rect(self.rect.centerx-(icon_speed/2),self.rect.centery-(icon_speed/2),icon_speed,icon_speed)
+		self.__image = pygame.transform.scale(pygame.image.load('images_overworld/ilha2.png'),(400,300))
+		self.__rect = self.image.get_rect(center = pos)
+		self.__detection_zone = pygame.Rect(self.rect.centerx-(icon_speed/2),self.rect.centery-(icon_speed/2),icon_speed,icon_speed)
+
+	@property
+	def image(self):
+		return self.__image
+
+
+	@property
+	def rect(self):
+		return self.__rect
+
+	@property
+	def detection_zone(self):
+		return self.__detection_zone
+	

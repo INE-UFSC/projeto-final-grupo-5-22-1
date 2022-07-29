@@ -26,6 +26,16 @@ class LevelController:
         self.__limiter = self.__sprite.setup_sprite(self.__level, 'limiter')
         self.__player = self.__sprite.setup_sprite(self.__level, 'player')
         self.__powerup = pygame.sprite.Group()
+        self.__game_over_player = False
+    
+    @property
+    def game_over_player(self):
+        return self.__game_over_player
+
+    @game_over_player.setter
+    def game_over(self,game_over_player):
+        self.__game_over_player = game_over_player
+
 
     def mapa_limiter(self):
         player = self.__player.sprite
@@ -95,6 +105,7 @@ class LevelController:
         self.__player.sprite.check_alive()
         if not self.__player.sprite.alive:
             self.__scoreDAO.add(self.__score)
+            self.__game_over_player = True
             
             print(self.__scoreDAO.get('1'))
 

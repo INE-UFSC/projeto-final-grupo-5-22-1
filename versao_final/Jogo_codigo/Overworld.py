@@ -5,11 +5,11 @@ from icon_overworld import Icon
 
 
 class Overworld:
-	def __init__(self,start_level,max_level,surface,create_level):
+	def __init__(self,start_level,max_level,surface,new_level):
 		self.__display_surface = surface 
 		self.__max_level = max_level
 		self.__current_level = start_level
-		self.__create_level = create_level
+		self.__new_level = new_level
 		self.__moving = False
 		self.__move_direction = pygame.math.Vector2(0,0)
 		self.__speed = 10
@@ -37,8 +37,8 @@ class Overworld:
 		return self.__max_level
 
 	@property
-	def create_level(self):
-		return self.__create_level
+	def new_level(self):
+		return self.__new_level
 	
 	@property
 	def moving(self):
@@ -87,7 +87,7 @@ class Overworld:
 				self.current_level -= 1
 				self.moving = True
 			elif keys[pygame.K_SPACE]:
-				self.create_level(self.current_level)
+				self.new_level(self.current_level)
 
 	def get_movement_data(self,target):
 		start = pygame.math.Vector2(self.nodes.sprites()[self.current_level].rect.center)

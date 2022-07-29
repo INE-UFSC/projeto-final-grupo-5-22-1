@@ -117,7 +117,7 @@ class Player(AnimatedObject):
 
     def check_alive(self):
         if self.cur_health <= 0:
-            self.cur_health = 100
+            self.cur_health = 0
             self.alive = False
 
     def move(self):

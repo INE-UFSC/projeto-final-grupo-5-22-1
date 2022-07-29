@@ -8,7 +8,7 @@ class Enemy(AnimatedObject):
         self.__speed = randint(2, 4)
         self.__direction = pygame.math.Vector2(1,1)
         self.__dead = False
-        self.__power = 10
+        self.__power = 50
 
     @property
     def dead(self):

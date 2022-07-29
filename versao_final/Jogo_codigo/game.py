@@ -28,6 +28,9 @@ class Game:
 
             pygame.display.update()
             self.__clock.tick(self.__FPS)
+            print(self.__level.game_over_player)
+            if self.__level.game_over_player == True:
+                self.__running = False
 
 #game = Game()
 #game.start_game()

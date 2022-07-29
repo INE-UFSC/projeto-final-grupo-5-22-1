@@ -14,7 +14,7 @@ class Player(AnimatedObject):
         self.__status = 'idle'
         self.__max_health = 100
         self.__cur_health = 100
-        self.__alive = False
+        self.__alive = True
         self.__invincible = False
         self.__invincible_duration = 500
         self.__hurt_time = 0
@@ -181,6 +181,7 @@ class Player(AnimatedObject):
             self.image = pygame.transform.flip(image, True, False)
         
     def update(self):
+        self.check_alive()
         self.animate()
         self.move()
         self.jump()

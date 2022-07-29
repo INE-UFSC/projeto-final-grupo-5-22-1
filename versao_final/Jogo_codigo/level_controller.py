@@ -35,7 +35,7 @@ class LevelController:
         return self.__game_over_player
 
     @game_over_player.setter
-    def game_over(self,game_over_player):
+    def game_over_player(self,game_over_player):
         self.__game_over_player = game_over_player
 
 
@@ -108,11 +108,12 @@ class LevelController:
                 self.__score.update()
     
     def game_over(self):
-        if self.__player.sprite.alive == False or self.__game_over_player == True:
+        if self.__player.sprite.alive == False:
+            self.__game_over_player = True
+        if self.__game_over_player:
             self.__scoreDAO.add(self.__date, self.__score)
             print(self.__scoreDAO.get_all())
-            self.__player.sprite.alive = True
-            self.__game_over_player = True
+
 
     def run(self):
         self.draw_control()

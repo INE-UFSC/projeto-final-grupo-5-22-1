@@ -12,6 +12,10 @@ class Game:
         self.__name = pygame.display.set_caption('Not Mario')
         self.__level = Level(self.__screen).levels[1]
 
+    @property
+    def running(self):
+        return self.__running
+
     def start_game(self):
         pygame.init()
         bg = pygame.transform.scale(pygame.image.load("images_overworld/background.png"),(1200,700))
@@ -28,9 +32,7 @@ class Game:
 
             pygame.display.update()
             self.__clock.tick(self.__FPS)
-            print(self.__level.game_over_player)
+
             if self.__level.game_over_player == True:
                 self.__running = False
 
-#game = Game()
-#game.start_game()

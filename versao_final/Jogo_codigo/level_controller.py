@@ -127,6 +127,7 @@ class LevelController:
     def win(self):
         for flag in self.__flag:
             if flag.collected == True:
+                self.__scoreDAO.add(self.__date, self.__score)
                 self.__game_win = True
                 flag.kill()
 

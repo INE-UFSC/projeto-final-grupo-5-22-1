@@ -1,12 +1,12 @@
 from time import sleep
 import pygame, sys
 from LevelOverworld import LevelOverworld
-from OverworldController import Overworld
+from Overworld import Overworld
 
 
 class Main:
 	def __init__(self):
-		self.max_level = 1
+		self.max_level = 2
 		self.screen = pygame.display.set_mode((1200,700))
 		self.overworld = Overworld(0,self.max_level,self.screen,self.create_level)
 		self.status = 'overworld'

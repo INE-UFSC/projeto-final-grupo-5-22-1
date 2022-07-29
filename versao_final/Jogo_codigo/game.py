@@ -14,15 +14,16 @@ class Game:
 
     def start_game(self):
         pygame.init()
-  
+        bg = pygame.transform.scale(pygame.image.load("images_overworld/background.png"),(1200,700))
         while self.__running:
             for event in pygame.event.get(): 
                 if event.type == pygame.QUIT:
                     self.running = False
                     pygame.quit() 
                     sys.exit()
-       
-            self.__screen.fill((200,200,200))
+
+            self.__screen.blit(bg, (0, 0))
+            #self.__screen.fill((200,200,200))
             self.__level.run() 
 
             pygame.display.update()

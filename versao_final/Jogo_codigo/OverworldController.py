@@ -4,21 +4,56 @@ from icon_overworld import Icon
 
 
 
-class OverworldController:
+class Overworld:
 	def __init__(self,start_level,max_level,surface,create_level):
-		self.display_surface = surface 
-		self.max_level = max_level
-		self.current_level = start_level
-		self.create_level = create_level
-		self.moving = False
-		self.move_direction = pygame.math.Vector2(0,0)
-		self.speed = 10
-		self.levels = [
+		self.__display_surface = surface 
+		self.__max_level = max_level
+		self.__current_level = start_level
+		self.__create_level = create_level
+		self.__moving = False
+		self.__move_direction = pygame.math.Vector2(0,0)
+		self.__speed = 10
+		self.__levels = [
 		{'node_pos':(300,450), 'content': 'this is level 1','unlock':1},
 		{'node_pos':(600,300), 'content': 'this is level 2','unlock':2},
 		{'node_pos':(900,450), 'content': 'this is level 3', 'unlock':2}]
 		self.setup_nodes()
 		self.setup_icon()
+
+	@property
+	def display_surface(self):
+		return self.__display_surface
+
+	@property
+	def current_level(self):
+		return self.__current_level
+	
+	@property
+	def levels(self):
+		return self.__levels
+
+	@property
+	def max_level(self):
+		return self.__max_level
+
+	@property
+	def create_level(self):
+		return self.__create_level
+	
+	@property
+	def moving(self):
+		return self.__moving
+	
+	@property
+	def move_direction(self):
+		return self.__move_direction
+
+	@property
+	def speed(self):
+		return self.__speed	
+
+
+
 
 	def setup_nodes(self):
 		self.nodes = pygame.sprite.Group()

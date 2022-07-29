@@ -9,9 +9,11 @@ from coin import Coin
 import pygame
 from scoreDAO import ScoreDAO
 from datetime import datetime
+from sound import Sound
 
 class LevelController:
     def __init__(self, current_level, surface):
+        self.__sound = Sound()
         self.__scoreDAO = ScoreDAO()
         self.__draw = Draw()
         self.__sprite = Sprites()
@@ -114,6 +116,7 @@ class LevelController:
         for sprite in self.__coins.sprites():
             if sprite.collected == True:
                 self.__score.update()
+                self.__sound.coin_music()
     
     def game_over(self):
         if self.__player.sprite.alive == False or self.__game_over_player == True:

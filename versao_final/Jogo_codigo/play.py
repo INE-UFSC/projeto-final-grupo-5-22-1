@@ -4,11 +4,18 @@ from menuMain import menuMain
 from menuScore import menuScore
 from main import Main
 from screen import Screen
+from sound import Sound
 
 
 class Play():
     def __init__(self):
         pygame.init()
+
+        self.__sound = Sound()
+        pygame.mixer.music.load("./sound/BoxCat-Games-CPU-Talk.ogg")
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(0.01)
+    
         self.__game = Main()
         self.__screen = Screen()
         self.__running, self.__playing = True, False
@@ -173,8 +180,10 @@ class Play():
                     self.__BACK_KEY = True
                 if event.key == pygame.K_DOWN:
                     self.__DOWN_KEY = True
+                    self.__sound.move_cursor_music()
                 if event.key == pygame.K_UP:
                     self.__UP_KEY = True
+                    self.__sound.move_cursor_music()
 
     def reset_keys(self):
         self.__UP_KEY, self.__DOWN_KEY, self.__START_KEY, self.__BACK_KEY = False, False, False, False
@@ -189,7 +198,6 @@ class Play():
 g = Play()
 
 while g.running:
-
     g.curr_menu.display_menu()
     g.game_loop()
     g.reset_keys()

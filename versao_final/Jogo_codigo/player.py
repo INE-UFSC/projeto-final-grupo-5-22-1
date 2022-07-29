@@ -1,9 +1,11 @@
 import pygame
 from animated_objects import AnimatedObject
+from sound import Sound
 
 class Player(AnimatedObject):
     def __init__(self, position, path):
         super().__init__(position, path)
+        self.__sound = Sound()
         self.__animations = {'idle' : [], 'run' : [], 'jump' : [], 'fall' : []}
         self.__direction = pygame.math.Vector2(0,1)
         self.__speed = 300
@@ -139,6 +141,7 @@ class Player(AnimatedObject):
         
         if keys[pygame.K_SPACE]:
             if self.__on_ground == True:
+                self.__sound.jump_music()
                 self.direction.y =  -(self.__jump_height)  
                 self.__jumping = True 
                 self.on_ground = False

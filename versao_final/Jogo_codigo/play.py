@@ -150,19 +150,14 @@ class Play():
     def game_loop(self):
         while self.__playing:
             self.check_events()
-            if self.__START_KEY:
+            if self.__BACK_KEY:
                 self.__playing= False
 
-            #JOGO AQUI
+
             self.__game.start()
 
-            # self.display.fill(self.BLACK)
-            # self.draw_text('Thanks for Playing', 20, self.DISPLAY_W/2, self.DISPLAY_H/2)
-            # self.window.blit(self.display, (0,0))
-
-            # pygame.display.update()
-            # self.reset_keys()
-
+            pygame.display.update()
+            self.reset_keys()
 
 
     def check_events(self):
@@ -172,6 +167,7 @@ class Play():
                 self.__curr_menu.__run_display = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
+                    self.__game.running = True
                     self.__START_KEY = True
                 if event.key == pygame.K_BACKSPACE:
                     self.__BACK_KEY = True

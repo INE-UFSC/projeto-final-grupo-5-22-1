@@ -8,14 +8,6 @@ class ScoreDAO(DAO):
     def add(self, data: str, score: Score):
         if (score is not None) and (isinstance(score, Score)):
             super().add(data, score.score)
-   
-    def get(self, key: str):
-        if isinstance(key, str):
-            return super().get(key)
-
-    def remove(self, key: str):
-        if isinstance(key, str):
-            return super().remove(key)
     
     def get_all(self):
         return super().get_all()

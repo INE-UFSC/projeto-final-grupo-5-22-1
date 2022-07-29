@@ -21,12 +21,16 @@ class menuScore(Menu):
 
     def showScore(self):
         self.__scoreDAO = ScoreDAO()
-        self.plus = 0
+        plus = 0
+        count = 0    
         for data, score in self.__scoreDAO.get_all():
-            self.draw_score(data, 20, 450, 250 + self.plus)
-            self.draw_score("---------------", 20, 675, 250 + self.plus)
-            self.draw_score(str(score), 20, 750, 250 + self.plus)
+            self.draw_score(data, 20, 450, 250 + plus)
+            self.draw_score("---------------", 20, 675, 250 + plus)
+            self.draw_score(str(score), 20, 750, 250 + plus)
             self.plus += 50
+            count += 1
+            if self.count >= 7:
+                break
 
     def draw_score(self, text, size, x, y):
         font = pygame.font.Font("freesansbold.ttf",size)

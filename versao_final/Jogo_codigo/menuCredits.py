@@ -13,11 +13,10 @@ class menuCredits(Menu):
                 self.run_display = False
 
             self.game.display.blit(self.game.creditos_image, (0, 0))
-            #self.game.display.fill(self.game.BLACK)
-            self.game.draw_text('Credits', 45, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 90)
-            self.game.draw_text('Game made by', 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 -30)
-            self.game.draw_text('Eduardo', 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 30)
-            self.game.draw_text('Fillipi', 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 70)
-            self.game.draw_text('Livia', 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 110)
-            self.game.draw_text('Lucas', 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 150)
+            self.game.draw_text('Credits', 45, self.game.screen.width / 2, self.game.screen.height / 2 - 90)
+            self.game.draw_text('Game made by', 30, self.game.screen.width / 2, self.game.screen.height / 2 -30)
+            self.game.draw_text('Eduardo', 30, self.game.screen.width / 2, self.game.screen.height / 2 + 30)
+            self.game.draw_text('Fillipi', 30, self.game.screen.width / 2, self.game.screen.height / 2 + 70)
+            self.game.draw_text('Livia', 30, self.game.screen.width / 2, self.game.screen.height / 2 + 110)
+            self.game.draw_text('Lucas', 30, self.game.screen.width / 2, self.game.screen.height / 2 + 150)
             self.blit_screen()

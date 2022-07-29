@@ -1,17 +1,47 @@
+import re
 import pygame
+from screen import Screen
 
 class Menu():
     def __init__(self, game):
-        self.game = game
-        self.mid_w, self.mid_h = self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2
-        self.run_display = True
-        self.cursor_rect = pygame.Rect(0, 0, 20, 20)
-        self.offset = - 100
+        self.__game = game
+        self.__mid_w, self.__mid_h = self.__game.screen.width / 2, self.__game.screen.height / 2
+        self.__run_display = True
+        self.__cursor_rect = pygame.Rect(0, 0, 20, 20)
+        self.__offset = - 100
+
+    @property
+    def game(self):
+        return self.__game
+
+    @property
+    def cursor_rect(self):
+        return self.__cursor_rect
+    
+    @property
+    def offset(self):
+        return self.__offset
+    
+    @property
+    def mid_w(self):
+        return self.__mid_w
+
+    @property
+    def mid_h(self):
+        return self.__mid_h
+    
+    @property
+    def run_display(self):
+        return self.__run_display
+    
+    @run_display.setter
+    def run_display(self, run_display):
+        self.__run_display = run_display
 
     def draw_cursor(self):
-        self.game.draw_text('*', 15, self.cursor_rect.x -100, self.cursor_rect.y -60) 
+        self.__game.draw_text('*', 15, self.__cursor_rect.x -100, self.__cursor_rect.y -60) 
 
     def blit_screen(self):
-        self.game.window.blit(self.game.display, (0, 0))
+        self.__game.window.blit(self.__game.display, (0, 0))
         pygame.display.update()
-        self.game.reset_keys()
+        self.__game.reset_keys()

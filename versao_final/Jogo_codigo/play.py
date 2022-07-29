@@ -1,5 +1,5 @@
+# -*- coding: utf-8 -*-
 import pygame
-#from menu import *
 from menuCredits import menuCredits
 from menuMain import menuMain
 from menuScore import menuScore
@@ -18,7 +18,7 @@ class Play():
         self.DISPLAY_W, self.DISPLAY_H = 1200, 700
         self.display = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))
         self.window = pygame.display.set_mode(((self.DISPLAY_W,self.DISPLAY_H)))
-        self.font_name = '8-BIT WONDER.TTF'
+        self.font_name = 'font/8-BIT WONDER.TTF'
 
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
 

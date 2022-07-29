@@ -8,6 +8,7 @@ from powerup import Powerup
 from coin import Coin
 import pygame
 from scoreDAO import ScoreDAO
+from datetime import datetime
 
 class LevelController:
     def __init__(self, current_level, surface):
@@ -16,6 +17,7 @@ class LevelController:
         self.__sprite = Sprites()
         self.__score = Score()
         self.__colision = Colision()
+        self.__date = datetime.today().strftime('%A, %B %d, %Y %H:%M:%S')
         self.__health = Health(surface)
         self.__display_surface = surface
         self.__level_shift = 0
@@ -106,12 +108,11 @@ class LevelController:
                 self.__score.update()
     
     def game_over(self):
-        self.__player.sprite.check_alive()
-        if not self.__player.sprite.alive:
-            self.__scoreDAO.add(self.__score)
+        if self.__player.sprite.alive == False or self.__game_over_player == True:
+            self.__scoreDAO.add(self.__date, self.__score)
+            print(self.__scoreDAO.get_all())
+            self.__player.sprite.alive = True
             self.__game_over_player = True
-            
-            print(self.__scoreDAO.get('1'))
 
     def run(self):
         self.draw_control()

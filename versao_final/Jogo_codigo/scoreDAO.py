@@ -5,9 +5,9 @@ class ScoreDAO(DAO):
     def __init__(self):
         super().__init__('score.pkl')
 
-    def add(self, score: Score):
+    def add(self, data: str, score: Score):
         if (score is not None) and (isinstance(score, Score)):
-            super().add(score.id, score.score)
+            super().add(data, score.score)
    
     def get(self, key: str):
         if isinstance(key, str):
@@ -16,9 +16,6 @@ class ScoreDAO(DAO):
     def remove(self, key: str):
         if isinstance(key, str):
             return super().remove(key)
-
-    def find_key(self, id: str):
-        for key, score in super().get_all():
-            if score.id == id:
-                return key
-        raise KeyError
+    
+    def get_all(self):
+        return super().get_all()

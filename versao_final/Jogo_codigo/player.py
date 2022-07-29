@@ -14,7 +14,7 @@ class Player(AnimatedObject):
         self.__status = 'idle'
         self.__max_health = 100
         self.__cur_health = 100
-        self.__alive = True
+        self.__alive = False
         self.__invincible = False
         self.__invincible_duration = 500
         self.__hurt_time = 0

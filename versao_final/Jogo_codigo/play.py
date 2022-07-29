@@ -150,7 +150,7 @@ class Play():
     def game_loop(self):
         while self.__playing:
             self.check_events()
-            if self.__START_KEY:
+            if self.__BACK_KEY:
                 self.__playing= False
             self.__game.start()
 

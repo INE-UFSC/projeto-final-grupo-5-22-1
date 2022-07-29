@@ -78,7 +78,7 @@ class LevelOverworld:
 
 	def game_over(self):
 		if self.game.win:
-			bg2= pygame.transform.scale(pygame.image.load("images/creditsMenu.png"),(1200,700))
+			bg2= pygame.transform.scale(pygame.image.load("images/win.png"),(1200,700))
 			self.screen.blit(bg2,(0, 0))
 			pygame.display.flip()
 		elif self.game.over:

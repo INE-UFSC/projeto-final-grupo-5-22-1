@@ -50,10 +50,23 @@ class Overworld:
 
 	@property
 	def speed(self):
-		return self.__speed	
+		return self.__speed
 
+	@move_direction.setter
+	def move_direction(self):
+		self.__move_direction = self.__move_direction
+	
+	@current_level.setter
+	def current_level(self, current_level):
+		self.__current_level = current_level
 
+	@moving.setter
+	def moving(self,moving):
+		self.__moving = moving
 
+	@move_direction.setter
+	def move_direction(self, direction):
+		self.__move_direction = direction
 
 	def setup_nodes(self):
 		self.nodes = pygame.sprite.Group()

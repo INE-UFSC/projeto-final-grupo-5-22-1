@@ -40,6 +40,7 @@ class LevelController:
     def mapa_limiter(self):
         player = self.__player.sprite
         player_x = player.rect.centerx
+        player_y = player.rect.centery
         direction_x = player.direction.x
         
         if player_x < 300 and direction_x < 0:
@@ -51,6 +52,9 @@ class LevelController:
         else:
             self.__level_shift = 0
             player.speed = 4
+        
+        if player_y >= 1150:
+            self.__game_over_player = True
 
         for sprite in self.__enemys.sprites():
             enemy_x = sprite.rect.x

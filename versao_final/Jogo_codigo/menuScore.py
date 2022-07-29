@@ -27,9 +27,9 @@ class menuScore(Menu):
             self.draw_score(data, 20, 450, 250 + plus)
             self.draw_score("---------------", 20, 675, 250 + plus)
             self.draw_score(str(score), 20, 750, 250 + plus)
-            self.plus += 50
+            plus += 50
             count += 1
-            if self.count >= 7:
+            if count >= 7:
                 break
 
     def draw_score(self, text, size, x, y):

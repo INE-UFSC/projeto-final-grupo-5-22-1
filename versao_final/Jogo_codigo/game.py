@@ -2,7 +2,7 @@ import pygame, sys
 from pygame.locals import *
 from screen import Screen
 from level import Level
-
+from time import sleep
 class Game:
     def __init__(self):
         self.__clock = pygame.time.Clock()
@@ -11,6 +11,23 @@ class Game:
         self.__screen = Screen().screen
         self.__name = pygame.display.set_caption('Not Mario')
         self.__level = Level(self.__screen).levels[1]
+        self.__win = False
+        self.__over = False
+    @property
+    def win(self):
+        return self.__win
+    @win.setter
+
+    def win(self,win):
+        self.__win = win
+        
+    @property
+    def over(self):
+        return self.__over
+
+    @over.setter
+    def over(self,over):
+        self.__over = over
 
     @property
     def running(self):
@@ -32,7 +49,8 @@ class Game:
 
             pygame.display.update()
             self.__clock.tick(self.__FPS)
-
-            if self.__level.game_over_player == True:
+            self.win = self.__level.game_win
+            self.over = self.__level.game_over_player
+            if self.__level.game_over_player == True or self.__level.game_win == True:
                 self.__running = False
 

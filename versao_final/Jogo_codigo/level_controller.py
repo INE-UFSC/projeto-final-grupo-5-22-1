@@ -118,7 +118,6 @@ class LevelController:
     def game_over(self):
         if self.__player.sprite.alive == False or self.__game_over_player == True:
             self.__scoreDAO.add(self.__date, self.__score)
-            print(self.__scoreDAO.get_all())
             self.__player.sprite.alive = True
             self.__game_over_player = True
 
@@ -127,7 +126,7 @@ class LevelController:
             if flag.collected == True:
                 self.__game_win = True
                 flag.kill()
-                print("VOCE VENCEU")
+
 
     def run(self):
         self.draw_control()

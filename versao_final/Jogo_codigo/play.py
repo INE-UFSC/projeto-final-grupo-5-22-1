@@ -165,7 +165,7 @@ class Play():
             if event.type == pygame.QUIT:
                 self.__running, self.__playing = False, False
                 self.__curr_menu.__run_display = False
-                pygame.quit()
+                pygame.quit() 
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
@@ -191,6 +191,7 @@ class Play():
 g = Play()
 
 while g.running:
+
     g.curr_menu.display_menu()
     g.game_loop()
     g.reset_keys()

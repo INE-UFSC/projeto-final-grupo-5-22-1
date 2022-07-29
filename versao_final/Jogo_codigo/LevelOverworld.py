@@ -16,6 +16,7 @@ class LevelOverworld:
 		self.__font = pygame.font.Font(None,40)
 		self.__text_surf = self.font.render(self.__level_content,True,'White')
 		self.__text_rect = self.text_surf.get_rect(center = (1280 / 2, 720 / 2))
+		self.__game = Game()
 
 	@property
 	def display_surface(self):
@@ -48,6 +49,10 @@ class LevelOverworld:
 	@property
 	def text_rect(self):
 		return self.__text_rect
+	
+	@property
+	def game(self):
+		return self.__game
 
 	def input(self):
 		keys = pygame.key.get_pressed()
@@ -57,8 +62,7 @@ class LevelOverworld:
 			self.new_overworld(self.current_level,1)
 
 	def start(self):
-		game = Game()
-		game.start_game()
+		self.game.start_game()
 	
 
 	def run(self):
@@ -67,6 +71,11 @@ class LevelOverworld:
 		pygame.display.flip()
 
 	def game_over(self):
-		bg = pygame.transform.scale(pygame.image.load("images/4.png"),(1200,700))
-		self.screen.blit(bg,(0, 0))
-		pygame.display.flip()
+		if self.game.win:
+			bg2= pygame.transform.scale(pygame.image.load("images/creditsMenu.png"),(1200,700))
+			self.screen.blit(bg2,(0, 0))
+			pygame.display.flip()
+		elif self.game.over:
+			bg1 = pygame.transform.scale(pygame.image.load("images/4.png"),(1200,700))
+			self.screen.blit(bg1,(0, 0))
+			pygame.display.flip()

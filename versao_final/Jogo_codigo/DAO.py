@@ -25,20 +25,5 @@ class DAO(ABC):
         self.__cache[key] = obj
         self.dump()
 
-    def remove(self, key):
-        try:
-            self.__cache.pop(key)
-            self.dump()
-            return True
-        except KeyError:
-            raise          
-
-    def get(self, key):
-        try:
-            return self.__cache[key]
-        except KeyError:
-            print('Chave não encontrada', arch = sys.stderr)
-            raise KeyError
-
     def get_all(self):
         return self.__cache.items()

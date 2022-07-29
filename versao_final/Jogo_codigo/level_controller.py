@@ -27,16 +27,26 @@ class LevelController:
         self.__enemys = self.__sprite.setup_sprite(self.__level, 'enemys')
         self.__limiter = self.__sprite.setup_sprite(self.__level, 'limiter')
         self.__player = self.__sprite.setup_sprite(self.__level, 'player')
+        self.__flag = self.__sprite.setup_sprite(self.__level, 'flag')
         self.__powerup = pygame.sprite.Group()
         self.__game_over_player = False
+        self.__game_win = False
     
     @property
     def game_over_player(self):
         return self.__game_over_player
 
     @game_over_player.setter
-    def game_over_player(self,game_over_player):
+    def game_over(self,game_over_player):
         self.__game_over_player = game_over_player
+
+    @property
+    def game_win(self):
+        return self.__game_win
+
+    @game_win.setter
+    def game_over(self,game_win):
+        self.__game_win = game_win
 
 
     def mapa_limiter(self):
@@ -58,11 +68,6 @@ class LevelController:
         if player_y >= 1150:
             self.__game_over_player = True
 
-        for sprite in self.__enemys.sprites():
-            enemy_x = sprite.rect.x
-            if self.__enemys.sprites() != []:
-                if enemy_x == 10  :
-                    sprite.reverse_side()
 
     def colision_control(self):
         self.__colision.ground_horizontal_colison(self.__ground.sprites(), self.__player.sprite)
@@ -72,6 +77,7 @@ class LevelController:
         self.__colision.player_coin_colision(self.__coins.sprites(), self.__player.sprite)
         self.__colision.enemy_limiter_colision(self.__limiter.sprites(), self.__enemys.sprites())
         self.__colision.player_powerup_colision(self.__powerup.sprites(), self.__player.sprite)
+        self.__colision.player_flag_colision(self.__flag.sprites(), self.__player.sprite)
                     
     def draw_control(self):
         self.__draw.draw(self.__ground, self.__display_surface)
@@ -81,6 +87,7 @@ class LevelController:
         self.__draw.score_ui(self.__score.image, self.__score.score, self.__display_surface, (50, 60))
         self.__health.show_health(self.__player.sprite.cur_health, self.__player.sprite.max_health)
         self.__draw.draw(self.__powerup, self.__display_surface)
+        self.__draw.draw(self.__flag, self.__display_surface)
 
     def update(self):
         self.__ground.update(self.__level_shift)
@@ -89,6 +96,7 @@ class LevelController:
         self.__limiter.update(self.__level_shift)
         self.__player.update()
         self.__powerup.update(self.__level_shift)
+        self.__flag.update(self.__level_shift)
 
     def check_state(self):
         for sprite in self.__enemys.sprites():
@@ -108,12 +116,18 @@ class LevelController:
                 self.__score.update()
     
     def game_over(self):
-        if self.__player.sprite.alive == False:
-            self.__game_over_player = True
-        if self.__game_over_player:
+        if self.__player.sprite.alive == False or self.__game_over_player == True:
             self.__scoreDAO.add(self.__date, self.__score)
             print(self.__scoreDAO.get_all())
+            self.__player.sprite.alive = True
+            self.__game_over_player = True
 
+    def win(self):
+        for flag in self.__flag:
+            if flag.collected == True:
+                self.__game_win = True
+                flag.kill()
+                print("VOCE VENCEU")
 
     def run(self):
         self.draw_control()
@@ -122,5 +136,6 @@ class LevelController:
         self.colision_control()
         self.score()
         self.game_over()
+        self.win()
         self.check_state()
 

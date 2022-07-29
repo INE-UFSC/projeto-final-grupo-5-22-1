@@ -1,4 +1,4 @@
-import pygame
+import pygame, sys
 from menuCredits import menuCredits
 from menuMain import menuMain
 from menuScore import menuScore
@@ -165,6 +165,8 @@ class Play():
             if event.type == pygame.QUIT:
                 self.__running, self.__playing = False, False
                 self.__curr_menu.__run_display = False
+                pygame.quit()
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     self.__game.running = True

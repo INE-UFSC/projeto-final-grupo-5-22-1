@@ -58,6 +58,10 @@ class Colision:
         for powerup_sprite in powerup:
             if player.rect.colliderect(powerup_sprite.rect):
                 powerup_sprite.effect(player)
-                print(player.speed, player.jump_height, player.cur_health)
                 powerup_sprite.kill()
+
+    def player_flag_colision(self, flag, player):
+        for flag_sprite in flag:
+            if player.rect.colliderect(flag_sprite.rect):
+                flag_sprite.collected = True
                 

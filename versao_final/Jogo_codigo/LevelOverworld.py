@@ -1,9 +1,10 @@
 import pygame 
 from game import Game
 from screen import Screen	
+from level import Level
 class LevelOverworld:
 	def __init__(self,current_level,surface,new_overworld):
-		self.screen = Screen().screen
+		self.__screen = Screen().screen
 		self.__display_surface = surface 
 		self.__current_level = current_level
 		self.__levels = [
@@ -53,6 +54,10 @@ class LevelOverworld:
 	@property
 	def game(self):
 		return self.__game
+	
+	@property
+	def screen(self):
+		return self.__screen
 
 	def input(self):
 		keys = pygame.key.get_pressed()
@@ -62,6 +67,7 @@ class LevelOverworld:
 			self.new_overworld(self.current_level,1)
 
 	def start(self):
+		self.game.level = Level(self.screen).levels[self.current_level]
 		self.game.start_game()
 	
 

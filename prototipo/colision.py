@@ -21,8 +21,7 @@ class Colision:
                                 player.rect.left = sprite.rect.right
                             elif player.direction.x > 0:
                                 player.rect.right = sprite.rect.left
-                        else:
-                            print("Player tomou dano")
+
                             
     def player_vertical_colison(self, collidable_obj, player):
         player.gravity_effect()

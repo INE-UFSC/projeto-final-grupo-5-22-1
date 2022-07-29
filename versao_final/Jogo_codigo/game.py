@@ -28,6 +28,14 @@ class Game:
     @over.setter
     def over(self,over):
         self.__over = over
+    
+    @property
+    def level(self):
+        return self.__level
+
+    @level.setter
+    def level(self,level):
+        self.__level = level
 
     @property
     def running(self):

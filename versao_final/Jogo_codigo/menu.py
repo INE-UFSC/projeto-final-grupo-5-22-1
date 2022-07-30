@@ -33,6 +33,30 @@ class Menu():
     @property
     def run_display(self):
         return self.__run_display
+
+    @game.setter
+    def game(self, game):
+        self.__game = game
+
+    @run_display.setter
+    def run_display(self, run_display):
+        self.__run_display = run_display
+    
+    @mid_h.setter
+    def mid_h(self, mid_h):
+        self.__mid_h = mid_h
+    
+    @mid_w.setter
+    def mid_w(self, mid_w):
+        self.__mid_w = mid_w
+
+    @offset.setter
+    def offset(self, offset):
+        self.__offset = offset
+    
+    @cursor_rect.setter
+    def cursor_rect(self, cursor_rect):
+        self.__cursor_rect = cursor_rect
     
     @run_display.setter
     def run_display(self, run_display):

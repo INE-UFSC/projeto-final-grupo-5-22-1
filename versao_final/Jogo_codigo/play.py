@@ -101,6 +101,14 @@ class Play():
     def curr_menu(self):
         return self.__curr_menu
 
+    @property
+    def sound(self):
+        return self.__sound
+
+    @sound.setter
+    def sound(self, sound):
+        self.__sound = sound
+
     @curr_menu.setter
     def curr_menu(self, curr_menu):
         self.__curr_menu = curr_menu

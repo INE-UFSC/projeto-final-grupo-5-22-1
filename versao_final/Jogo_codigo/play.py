@@ -14,7 +14,7 @@ class Play():
         self.__sound = Sound()
         pygame.mixer.music.load("./sound/BoxCat-Games-CPU-Talk.ogg")
         pygame.mixer.music.play(-1)
-        pygame.mixer.music.set_volume(0.01)
+        pygame.mixer.music.set_volume(0.2)
     
         self.__game = Main()
         self.__screen = Screen()

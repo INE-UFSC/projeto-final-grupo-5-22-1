@@ -1,6 +1,5 @@
 from abc import ABC
 import pickle
-import sys
 
 class DAO(ABC):
     def __init__(self, datasource = ''):

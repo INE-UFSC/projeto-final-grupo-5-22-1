@@ -43,7 +43,7 @@ class Game:
 
     def start_game(self):
         pygame.init()
-        bg = pygame.transform.scale(pygame.image.load("images_overworld/background.png"),(1200,700))
+        bg = pygame.transform.scale(pygame.image.load("images/background2.png"),(1200,700))
         while self.__running:
             for event in pygame.event.get(): 
                 if event.type == pygame.QUIT:

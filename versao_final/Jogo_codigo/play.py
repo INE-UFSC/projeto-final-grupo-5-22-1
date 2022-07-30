@@ -195,9 +195,10 @@ class Play():
         text_rect.center = (x,y)
         self.__display.blit(text_surface,text_rect)
 
-g = Play()
+    def start_not_mario(self):
+        g = Play()
 
-while g.running:
-    g.curr_menu.display_menu()
-    g.game_loop()
-    g.reset_keys()
+        while g.running:
+            g.curr_menu.display_menu()
+            g.game_loop()
+            g.reset_keys()
